@@ -1,0 +1,23 @@
+.card-container {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+}
+
+.card {
+    border-style: solid;
+    border-color: black;
+    border-width: 0.5rem;
+    border-radius: 15px;
+    padding: 1rem;
+    font-weight: bold;
+    font-size: x-large;
+}
+
+.card svg {
+    
+    width: 15rem;
+    border-radius: 15px;
+}

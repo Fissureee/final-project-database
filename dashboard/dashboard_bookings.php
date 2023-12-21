@@ -18,6 +18,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./style/style.css">
     <link rel="stylesheet" href="./style/dashboard_home.css">
+    <style>
+        .print-btn {
+            background-color: gray;
+            text-decoration: none;
+            font-weight: bolder;
+            color: white;
+            padding: 1rem;
+            border-radius: 25px;
+        }
+    </style>
     <title>Dashboard</title>
 </head>
 
@@ -98,17 +108,37 @@
 
     <div class="content">
         <div class="container">
-            <a href="../functions/bookingCreate.php" class="create">+ Create New Booking</a>
-            <div class="table-container">
+            <form method="get">
+                <label for="searchTerm">Search Term:</label>
+                <input type="text" name="searchTerm">
+
+                <label for="category">Category:</label>
+                <select name="category">
+                    <option value="venue">Venue Name</option>
+                    <option value="user">Username</option>
+                </select>
+
+                <button type="submit" name="search">Search</button>
+            </form>
+            <a href="../functions/venueCreate.php" class="create">+ Create New Venue</a>
+            <div id="pdf-content" class="table-container">
                 <?php
+                if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['search'])) {
+                    $search = $_GET['searchTerm'];
+                    $type = $_GET['category'];
+                } else {
+                    $search = null;
+                    $type = null;
+                }
                 require '../functions/read.php';
-                BookingsTable();
+                BookingsTable($search, $type);
                 ?>
             </div>
+            <a href="../functions/print.php" class="print-btn">Print PDF</a>
         </div>
     </div>
 
-
 </body>
+
 
 </html>

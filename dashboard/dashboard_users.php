@@ -98,11 +98,34 @@
 
     <div class="content">
         <div class="container">
-            <a href="../functions/userCreate.php" class="create">+ Create New User</a>
+            <form method="get">
+                <label for="searchTerm">Search Term:</label>
+                <input type="text" name="searchTerm">
+
+                <label for="category">Category:</label>
+                <select name="category">
+                    <option value="username">Username</option>
+                    <option value="role">Role</option>
+                    <option value="firstname">First Name</option>
+                    <option value="lastname">Last Name</option>
+                    <option value="email">Email</option>
+                    <option value="phone">Phone</option>
+                </select>
+
+                <button type="submit" name="search">Search</button>
+            </form>
+            <a href="../functions/venueCreate.php" class="create">+ Create New Venue</a>
             <div class="table-container">
                 <?php
+                if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['search'])) {
+                    $search = $_GET['searchTerm'];
+                    $type = $_GET['category'];
+                } else {
+                    $search = null;
+                    $type = null;
+                }
                 require '../functions/read.php';
-                UsersTable();
+                UsersTable($search, $type);
                 ?>
             </div>
         </div>

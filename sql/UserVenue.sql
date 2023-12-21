@@ -50,7 +50,9 @@ VALUES
   ('organizer_brandon_wilson', 'brandon456', 'organizer', 'Brandon', 'Wilson', 'brandon.wilson@example.com', '222-333-4444'),
   ('admin_emma_smith', 'emma789', 'admin', 'Emma', 'Smith', 'emma.smith@example.com', '555-444-3333'),
   ('organizer_luke_jackson', 'luke123', 'organizer', 'Luke', 'Jackson', 'luke.jackson@example.com', '111-222-3333'),
-  ('organizer_aubrey_miller', 'aubrey456', 'organizer', 'Aubrey', 'Miller', 'aubrey.miller@example.com', '777-888-9999');
+  ('organizer_aubrey_miller', 'aubrey456', 'organizer', 'Aubrey', 'Miller', 'aubrey.miller@example.com', '777-888-9999'),
+  ('zack', 'org123', 'organizer', 'Zack', 'Miller', 'zack.miller@example.com', '777-333-9999'),
+  ('lee', 'adm123', 'admin', 'Lee', 'Miller', 'lee.miller@example.com', '777-888-4444');
 
 -- Dummy data for Venues table
 INSERT INTO Venues (VenueName, Location, Capacity, Amenities, PricePerDay)
@@ -72,23 +74,23 @@ VALUES
   ('Riverside Plaza', 'Riverside', 120, 'River view, Garden, Amphitheater', 1000000);
 
 -- Dummy data for Bookings table
-INSERT INTO Bookings (VenueID, UserID, BookingDate, EndBooking, Status)
+INSERT INTO Bookings (VenueID, UserID, BookingDate, EndBooking)
 VALUES
-  (1, 2, '2023-12-15', '2023-12-16', 'Confirmed'),
-  (2, 3, '2023-12-20', '2023-12-22', 'Pending'),
-  (3, 1, '2023-12-25', '2023-12-27', 'Confirmed'),
-  (4, 4, '2023-12-18', '2023-12-20', 'Pending'),
-  (5, 5, '2023-12-10', '2023-12-11', 'Confirmed'),
-  (6, 6, '2023-12-28', '2023-12-30', 'Confirmed'),
-  (7, 7, '2023-12-05', '2023-12-07', 'Pending'),
-  (8, 8, '2023-12-12', '2023-12-13', 'Confirmed'),
-  (9, 9, '2023-12-08', '2023-12-10', 'Pending'),
-  (10, 10, '2023-12-22', '2023-12-24', 'Confirmed'),
-  (11, 11, '2023-12-02', '2023-12-04', 'Confirmed'),
-  (12, 12, '2023-12-30', '2023-12-31', 'Pending'),
-  (13, 13, '2023-12-14', '2023-12-15', 'Confirmed'),
-  (14, 14, '2023-12-17', '2023-12-19', 'Pending'),
-  (15, 15, '2023-12-26', '2023-12-28', 'Confirmed');
+  (1, 2, '2023-12-15', '2023-12-16'),
+  (2, 3, '2023-12-20', '2023-12-22'),
+  (3, 1, '2023-12-25', '2023-12-27'),
+  (4, 4, '2023-12-18', '2023-12-20'),
+  (5, 5, '2023-12-10', '2023-12-11'),
+  (6, 6, '2023-12-28', '2023-12-30'),
+  (7, 7, '2023-12-05', '2023-12-07'),
+  (8, 8, '2023-12-12', '2023-12-13'),
+  (9, 9, '2023-12-08', '2023-12-10'),
+  (10, 10, '2023-12-22', '2023-12-24'),
+  (11, 11, '2023-12-02', '2023-12-04'),
+  (12, 12, '2023-12-30', '2023-12-31'),
+  (13, 13, '2023-12-14', '2023-12-15'),
+  (14, 14, '2023-12-17', '2023-12-19'),
+  (15, 15, '2023-12-26', '2023-12-28');
 
 --show all the data in the tables
 SELECT * FROM Users;

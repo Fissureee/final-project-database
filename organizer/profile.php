@@ -41,9 +41,6 @@
     </nav>
 
     <div class="content">
-        <h1>
-            <?php echo "Welcome, $userName" ?>
-        </h1>
         <div class="container">
             <div class="table-container">
                 <?php

@@ -42,18 +42,45 @@ function OrganizerBookingTable($userID)
     }
 }
 
-function OrganizerVenuesTable()
+function OrganizerVenuesTable($search, $type)
 {
     include 'connect.php';
+    $venues = []; // Initialize an empty array to avoid undefined variable warning
+
+    if (!$search == null) {
+        switch ($type) {
+            case 'name':
+                $query = $conn->prepare("SELECT * FROM Venues WHERE VenueName LIKE ?");
+                $query->execute(["%$search%"]);
+                break;
+
+            case 'location':
+                $query = $conn->prepare("SELECT * FROM Venues WHERE Location LIKE ?");
+                $query->execute(["%$search%"]);
+                break;
+
+            case 'capacity':
+                $query = $conn->prepare("SELECT * FROM Venues WHERE Capacity LIKE ?");
+                $query->execute(["$search"]);
+                break;
+
+            default:
+                // Handle invalid category
+                echo "Invalid category selected.";
+                break;
+        }
+    } else {
+        $query = $conn->query("SELECT * FROM Venues");
+    }
+
+    // Check if the query was successful before fetching results
+    if ($query) {
+        $venues = $query->fetchAll(PDO::FETCH_ASSOC);
+    } else {
+        echo "Error executing the query.";
+    }
 
     // Fetch data from the Users table
-    $query = $conn->query("SELECT * FROM Venues");
-    $venues = $query->fetchAll(PDO::FETCH_ASSOC);
-
-    $totalprice = $conn->query("-- Example usage
-    DECLARE @BookingID INT = 1;
-    SELECT dbo.CalculateBookingPrice(@BookingID) AS TotalPrice;
-    ");
 
     // Display data in a table
     if (!empty($venues)) {
@@ -74,6 +101,7 @@ function OrganizerVenuesTable()
         echo "No venues found.";
     }
 }
+
 
 function OrganizerProfile($userID)
 {

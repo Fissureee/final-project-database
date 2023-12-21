@@ -98,11 +98,31 @@
 
     <div class="content">
         <div class="container">
+            <form method="get">
+                <label for="searchTerm">Search Term:</label>
+                <input type="text" name="searchTerm">
+
+                <label for="category">Category:</label>
+                <select name="category">
+                    <option value="name">Name</option>
+                    <option value="location">Location</option>
+                    <option value="capacity">Capacity</option>
+                </select>
+
+                <button type="submit" name="search">Search</button>
+            </form>
             <a href="../functions/venueCreate.php" class="create">+ Create New Venue</a>
             <div class="table-container">
                 <?php
+                if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['search'])) {
+                    $search = $_GET['searchTerm'];
+                    $type = $_GET['category'];
+                } else {
+                    $search = null;
+                    $type = null;
+                }
                 require '../functions/read.php';
-                VenuesTable();
+                VenuesTable($search, $type);
                 ?>
             </div>
         </div>

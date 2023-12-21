@@ -41,14 +41,31 @@
     </nav>
 
     <div class="content">
-        <h1>
-            <?php echo "Welcome, $userName" ?>
-        </h1>
+        <form method="get">
+            <label for="searchTerm">Search Term:</label>
+            <input type="text" name="searchTerm">
+
+            <label for="category">Category:</label>
+            <select name="category">
+                <option value="name">Name</option>
+                <option value="location">Location</option>
+                <option value="capacity">Capacity</option>
+            </select>
+
+            <button type="submit" name="search">Search</button>
+        </form>
         <div class="container">
             <div class="table-container">
                 <?php
+                if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['search'])) {
+                    $search = $_GET['searchTerm'];
+                    $type = $_GET['category'];
+                } else {
+                    $search = null;
+                    $type = null;
+                }
                 require '../orgFunctions/read.php';
-                OrganizerVenuesTable();
+                OrganizerVenuesTable($search, $type);
                 ?>
             </div>
         </div>

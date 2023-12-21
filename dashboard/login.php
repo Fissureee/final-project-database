@@ -8,7 +8,7 @@ if (isset($_POST['login'])) {
     $password = $_POST['password'];
 
     // Validate the user's credentials and role
-    $loginQuery = $conn->prepare("SELECT * FROM Users WHERE UserName = ? AND Password = ? AND UserRole = 'admin'");
+    $loginQuery = $conn->prepare("SELECT * FROM Users WHERE UserName = ? AND Password = ?");
     $loginQuery->execute([$username, $password]);
     $user = $loginQuery->fetch(PDO::FETCH_ASSOC);
 
@@ -19,11 +19,16 @@ if (isset($_POST['login'])) {
         $_SESSION['user_role'] = $user['UserRole'];
 
         // Redirect to the dashboard or any other authenticated page
-        header("Location: ../dashboard/dashboard_home.php");
+        if ($user['UserRole'] == 'admin') {
+            header("Location: ../dashboard/dashboard_home.php");
+        } else {
+            header("Location: ../organizer/home.php");
+        }
+
         exit();
     } else {
         // Invalid credentials or not an admin, show an error message or redirect to the login page
-        $error = "Invalid username or password for organizer.";
+        $error = "Invalid username or password.";
     }
 }
 ?>
@@ -34,7 +39,7 @@ if (isset($_POST['login'])) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin Login</title>
+    <title>Login</title>
     <style>
         body {
             font-family: Arial, sans-serif;

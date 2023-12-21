@@ -35,7 +35,7 @@
                 <a href="profile.php">Profile</a>
             </li>
             <li>
-                <a href="../orgFunctions/logout.php">Logout</a>
+                <a href="../functions/logout.php">Logout</a>
             </li>
         </ul>
     </nav>

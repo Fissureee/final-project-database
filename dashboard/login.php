@@ -103,6 +103,9 @@ if (isset($_POST['login'])) {
         <input type="password" name="password" required>
 
         <button type="submit" name="login">Login</button>
+
+        <br>
+        <a href="../orgFunctions/register.php" style="text-decoration: none;">Click here to register</a>
     </form>
 
 </body>

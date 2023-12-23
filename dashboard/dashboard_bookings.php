@@ -120,7 +120,7 @@
 
                 <button type="submit" name="search">Search</button>
             </form>
-            <a href="../functions/venueCreate.php" class="create">+ Create New Venue</a>
+            <a href="../functions/bookingCreate.php" class="create">+ Create New Booking</a>
             <div id="pdf-content" class="table-container">
                 <?php
                 if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['search'])) {

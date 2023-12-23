@@ -114,7 +114,7 @@
 
                 <button type="submit" name="search">Search</button>
             </form>
-            <a href="../functions/venueCreate.php" class="create">+ Create New Venue</a>
+            <a href="../functions/userCreate.php" class="create">+ Create New User</a>
             <div class="table-container">
                 <?php
                 if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['search'])) {
